@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
   <title>My Portfolio</title>
@@ -6,8 +6,8 @@
 </head>
 <body>
   <header>
-    <h1>Tyler Matthew Joerendt</h1>
-    <p>Welcome to my portfolio website!</p>
+    <h1>Tyler Joerendt</h1>
+    <p>Welcome to my portfolio</p>
   </header>
 
   <section id="about">
@@ -40,9 +40,179 @@
   </section>
 
   <footer>
-    <p>&copy; 2025 Tyler Matthew Joerendt</p>
+    <p>&copy; 2025 Tyler Joerendt</p>
   </footer>
 
   <script src="script.js"></script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tyler Joerendt Portfolio</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #fff;
+      color: #000;
+      line-height: 1.6;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    /* Tabs container */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin-bottom: 30px;
+    }
+
+    /* Image tabs */
+    .tabs img.tab-btn {
+      width: 60px;
+      height: 60px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      border-radius: 10px;
+      transition: border-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .tabs img.tab-btn:hover {
+      transform: scale(1.1);
+      border-color: #007acc;
+    }
+
+    .tabs img.tab-btn.active {
+      border-color: #007acc;
+      box-shadow: 0 0 10px #007acc;
+      transform: scale(1.1);
+    }
+
+    /* Tab content style */
+    .tab-content {
+      display: none;
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    h1, h2 {
+      color: #007acc;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Tyler Joerendt Portfolio</h1>
+    <p>Welcome to my interactive portfolio</p>
+  </header>
+
+  <!-- Tabs with images -->
+  <nav class="tabs" role="tablist">
+    <img src="images/about.png" class="tab-btn active" data-tab="about" alt="About Me" role="tab" aria-selected="true" tabindex="0" />
+    <img src="images/portfolio.png" class="tab-btn" data-tab="portfolio" alt="Portfolio" role="tab" aria-selected="false" tabindex="-1" />
+    <img src="images/resume.png" class="tab-btn" data-tab="resume" alt="Resume" role="tab" aria-selected="false" tabindex="-1" />
+    <img src="images/contact.png" class="tab-btn" data-tab="contact" alt="Contact" role="tab" aria-selected="false" tabindex="-1" />
+  </nav>
+
+  <!-- Tab content sections -->
+  <section id="about" class="tab-content active" role="tabpanel" tabindex="0">
+  <h2>About Me</h2>
+  <p>
+    Hello! I’m Tyler Joerendt, currently a junior at Ivy Tech Community College, where I have primarily focused on programming with C++ and Python throughout my education.
+  </p>
+  <p>
+    While these languages have given me a strong foundation in programming concepts, I am now excited to expand my skills into web development by learning and applying JavaScript, HTML, and CSS. This portfolio is my way of practicing and showcasing these new skills.
+  </p>
+  <p>
+    I enjoy solving problems through code and collaborating on projects, such as a 2D space-themed game I worked on with my peers, which helped me develop teamwork and practical programming experience.
+  </p>
+  <p>
+    Through this portfolio, I aim to document my growth as a developer and create a platform to share my projects and progress. My goal is to continue building my expertise across multiple languages and technologies, ultimately pursuing a career in tech.
+  </p>
+</section>
+
+
+  <section id="portfolio" class="tab-content" role="tabpanel" tabindex="0">
+    <h2>Projects</h2>
+    <ul>
+      <li><strong>Space Game:</strong> A 2D space-themed game I collaborated on with peers for a school project, designing mechanics and controls.</li>
+      <li>Project 2 – Coming soon!</li>
+    </ul>
+  </section>
+
+  <section id="resume" class="tab-content" role="tabpanel" tabindex="0">
+  <h2>Resume</h2>
+  <p>If you want to download it, <a href="files/resume.pdf" target="_blank" rel="noopener noreferrer">click here</a>.</p>
+  <iframe src="files/resume.pdf" width="100%" height="600px" style="border:none;"></iframe>
+</section>
+
+
+  <section id="contact" class="tab-content" role="tabpanel" tabindex="0">
+    <h2>Contact</h2>
+    <p>Email: tyler20joerendt@gmail.com</p>
+    <p>Phone: (765) 609-0480</p>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabs = document.querySelectorAll('.tab-btn');
+      const contents = document.querySelectorAll('.tab-content');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          // Remove active from tabs and content
+          tabs.forEach(t => {
+            t.classList.remove('active');
+            t.setAttribute('aria-selected', 'false');
+            t.setAttribute('tabindex', '-1');
+          });
+          contents.forEach(c => c.classList.remove('active'));
+
+          // Add active to clicked tab and matching content
+          tab.classList.add('active');
+          tab.setAttribute('aria-selected', 'true');
+          tab.setAttribute('tabindex', '0');
+
+          const target = tab.getAttribute('data-tab');
+          document.getElementById(target).classList.add('active');
+          document.getElementById(target).focus();
+        });
+
+        // Optional: keyboard accessibility for tabs
+        tab.addEventListener('keydown', e => {
+          if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+            e.preventDefault();
+            let index = Array.from(tabs).indexOf(e.target);
+            if (e.key === 'ArrowRight') {
+              index = (index + 1) % tabs.length;
+            } else if (e.key === 'ArrowLeft') {
+              index = (index - 1 + tabs.length) % tabs.length;
+            }
+            tabs[index].click();
+            tabs[index].focus();
+          }
+        });
+      });
+    });
+  </script>
+
 </body>
 </html>
